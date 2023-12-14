@@ -53,6 +53,8 @@ class UserLoginView(generics.CreateAPIView):
 
 
 class UserLogoutView(generics.GenericAPIView):
+    serializer_class = UserLoginSerializer
+
     def post(self, request, *args, **kwargs):
         logout(request)
         return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
