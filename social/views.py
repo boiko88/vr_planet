@@ -30,3 +30,11 @@ class EquipmentView(MyView):
 
 class GamesView(MyView):
     template_name = 'games.html'
+
+
+class HeadsetsView(MyView):
+    template_name = 'headsets.html'
+
+
+class ForumView(MyView):
+    template_name = 'forum.html'
