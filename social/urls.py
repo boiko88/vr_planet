@@ -3,8 +3,6 @@ from django.urls import path
 
 from .views import HomeView, EquipmentView, GamesView, ForumView, HeadsetsView
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,5 +12,3 @@ urlpatterns = [
     path('forum', ForumView.as_view(), name="forum"),
     path('headsets', HeadsetsView.as_view(), name="headsets"),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
