@@ -1,17 +1,10 @@
 from django.shortcuts import render
 from django.views import View
-
-
-# class HomeView(View):
-#     def get(self, request):
-#         context = {}  # Add your context data here
-#         return render(request, 'home.html', context)
-    
-
-# class EquipmentView(View):
-#     def get(self, request):
-#         context = {}  # Add your context data here
-#         return render(request, 'equipment.html', context)
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate, login, logout
+from .serializers import UserSerializer, UserLoginSerializer
 
 
 class MyView(View):
@@ -38,3 +31,28 @@ class HeadsetsView(MyView):
 
 class ForumView(MyView):
     template_name = 'forum.html'
+
+
+class UserRegistrationView(generics.CreateAPIView):
+    serializer_class = UserSerializer
+
+
+class UserLoginView(generics.CreateAPIView):
+    serializer_class = UserLoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = authenticate(username=serializer.validated_data['username'], password=serializer.validated_data['password'])
+        if user:
+            login(request, user)
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key}, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class UserLogoutView(generics.GenericAPIView):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
