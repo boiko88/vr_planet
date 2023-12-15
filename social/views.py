@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -47,7 +47,10 @@ class UserLoginView(generics.CreateAPIView):
         if user:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key}, status=status.HTTP_200_OK)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('home')  # Redirect to the home page if 'next' is not present
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 

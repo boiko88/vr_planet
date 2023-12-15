@@ -36,6 +36,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'user_login' %}">Login</a>
             </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'user_login' %}?next={{ request.path }}">
+                <!-- existing form fields -->
+              </form>
+            </li>
           {% endif %}
         </ul>
       </div>
