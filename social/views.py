@@ -3,7 +3,7 @@ from django.views import View
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from .serializers import UserSerializer, UserLoginSerializer
 
 
@@ -55,9 +55,9 @@ class UserLoginView(generics.CreateAPIView):
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-class UserLogoutView(generics.GenericAPIView):
-    serializer_class = UserLoginSerializer
+# class UserLogoutView(generics.GenericAPIView):
+#     serializer_class = UserLoginSerializer
 
-    def post(self, request, *args, **kwargs):
-        logout(request)
-        return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
+#     def post(self, request, *args, **kwargs):
+#         logout(request)
+#         return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
