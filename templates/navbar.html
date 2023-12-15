@@ -26,7 +26,7 @@
           <li class="nav-item">
             <form method="post" action="{% url 'user_logout' %}">
               {% csrf_token %}
-              <button type="submit" class="nav-link">Logout</button>
+              <button type="submit" class="btn btn-danger">Logout</button>
             </form>
           </li>
           <li class="nav-item">
@@ -34,7 +34,7 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+            <a button class="btn btn-success" href="{% url 'user_login' %}">Login</button></a>
           </li>
         {% endif %}
       </ul>
