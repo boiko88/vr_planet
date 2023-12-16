@@ -4,13 +4,15 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login
+from django.views.generic import TemplateView
+
 from .serializers import UserSerializer, UserLoginSerializer
+from . models import Blog
 
 
 class MyView(View):
     def get(self, request):
-        context = {}  # Add your context data here
-        return render(request, self.template_name, context)
+        return render(request, self.template_name)
 
 
 class HomeView(MyView):
@@ -33,6 +35,15 @@ class ForumView(MyView):
     template_name = 'forum.html'
 
 
+class BlogView(TemplateView):
+    template_name = 'blog.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['blogs'] = Blog.objects.all()
+        return context
+
+
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
@@ -53,11 +64,3 @@ class UserLoginView(generics.CreateAPIView):
                 return redirect('home')  # Redirect to the home page if 'next' is not present
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-
-
-# class UserLogoutView(generics.GenericAPIView):
-#     serializer_class = UserLoginSerializer
-
-#     def post(self, request, *args, **kwargs):
-#         logout(request)
-#         return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)

@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h2>This is Blog page</h2>
+
+{% for blog in blogs %}
+    <div>
+      <h3>{{ blog.blog_name }}</h3>
+      <p>{{ blog.blog_description }}</p>
+      <img src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
+    </div>
+{% endfor %}
+
+{% endblock content %}
