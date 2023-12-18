@@ -1,12 +1,14 @@
 {% extends "main.html" %}
 
 {% block content %}
+<center>
 <h2>This is Blog page</h2>
+</center>
 
 {% for blog in blogs %}
     <div>
       <h3>{{ blog.blog_name }}</h3>
-      <img style="width:300px;" src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
+      <img class=imagecut src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
       <p>{{ blog.blog_description }}</p>
       
     </div>

@@ -122,3 +122,14 @@
     transform: translateY(-3px);
   }
   
+  .imagecut {
+    width:300px;
+  }
+
+  .footer {
+    background-color: #212529;
+  }
+
+  .textblue {
+    color: #2828FF;
+  }
