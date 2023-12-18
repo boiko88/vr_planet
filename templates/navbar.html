@@ -28,6 +28,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'forum' %}">Forum</a>
         </li>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="{% url 'login1' %}">Login 1</a>
+        </li> {% endcomment %}
         {% if user.is_authenticated %}
           <li class="nav-item">
             <form method="post" action="{% url 'user_logout' %}">
@@ -40,7 +43,7 @@
           </li>
         {% else %}
           <li class="nav-item">
-            <a button class="btn btn-success" href="{% url 'user_login' %}">Login</button></a>
+            <a button class="btn btn-success" href="{% url 'login' %}">Login</button></a>
           </li>
         {% endif %}
       </ul>

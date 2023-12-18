@@ -95,6 +95,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# I am not sure this is the best practice to use this setting
+LOGIN_REDIRECT_URL = 'home'
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
