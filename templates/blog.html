@@ -5,9 +5,9 @@
 <h2>This is Blog page</h2>
 </center>
 
-<form method="GET" action="{% url 'blog_search' %}">
-    <input type="text" name="query" placeholder="Search...">
-    <button type="submit">Search</button>
+<form method="GET" action="{% url 'blog_search' %}" class="search-form">
+  <input type="text" name="query" placeholder="Search..." class="search-input">
+  <button type="submit" class="search-button">Search</button>
 </form>
 
 {% for blog in blogs %}

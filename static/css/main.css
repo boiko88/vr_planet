@@ -133,3 +133,49 @@
   .textblue {
     color: #2828FF;
   }
+
+
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .footer {
+    position: relative;
+    background-color: black;
+    color: #007bff;
+    text-align: center;
+  }
+  
+  .left-image {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .right-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .footer-text {
+    display: inline-block;
+    white-space: nowrap;
+  }
