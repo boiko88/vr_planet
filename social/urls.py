@@ -8,7 +8,8 @@ from .views import (
     ForumView, 
     HeadsetsView, 
     UserRegistrationView, 
-    BlogView)
+    BlogView,
+    BlogSearchView)
 
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login1.html', success_url='/'), name='login'),
     path('register/', UserRegistrationView.as_view(), name='user_register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='user_logout'),
+    path('blog_search/', BlogSearchView.as_view(), name='blog_search'),
 ]

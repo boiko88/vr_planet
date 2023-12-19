@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h2>Search results for "{{ request.GET.query }}"</h2>
+<form method="GET" action="{% url 'blog_search' %}">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+{% if blogs %}
+    {% for blog in blogs %}
+        <div>
+            <h3>{{ blog.blog_name }}</h3>
+            <img class=imagecut src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
+            <p>{{ blog.blog_description }}</p>
+        </div>
+        
+    {% endfor %}
+    
+{% else %}
+    <p>No results found</p>
+{% endif %}
+
+{% endblock content %}
