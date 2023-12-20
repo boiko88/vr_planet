@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from rest_framework import generics, status
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate, login
+from rest_framework import generics
 from django.views.generic import TemplateView, ListView
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .serializers import UserSerializer
 from . models import Blog
@@ -38,10 +36,15 @@ class ForumView(MyView):
 
 class BlogView(TemplateView):
     template_name = 'blog.html'
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['blogs'] = Blog.objects.all()
+        blog_list = Blog.objects.all()
+        paginator = Paginator(blog_list, self.paginate_by)
+        page = self.request.GET.get('page')
+        blogs = paginator.get_page(page)
+        context['blogs'] = blogs
         return context
 
 
@@ -63,10 +66,22 @@ class BlogSearchView(ListView):
     model = Blog
     template_name = 'blog_search.html'
     context_object_name = 'blogs'
-    paginate_by = 10
+    paginate_by = 2
 
     def get_queryset(self):
         query = self.request.GET.get('query', '')
-        if query:
-            return Blog.objects.filter(blog_name__contains=query)
-        return Blog.objects.all()
+        blog_list = Blog.objects.filter(blog_name__contains=query)
+        return blog_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(self.object_list, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            blogs = paginator.page(page)
+        except PageNotAnInteger:
+            blogs = paginator.page(1)
+        except EmptyPage:
+            blogs = paginator.page(paginator.num_pages)
+        context['blogs'] = blogs
+        return context
