@@ -4,10 +4,10 @@ from rest_framework import generics
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
-from .serializers import UserSerializer
-from . models import Blog
+from . serializers import UserSerializer
+from . models import Blog, Game
 from . forms import LoginForm
 
 
@@ -24,8 +24,18 @@ class EquipmentView(MyView):
     template_name = 'equipment.html'
 
 
-class GamesView(MyView):
+class GamesView(TemplateView):
     template_name = 'games.html'
+    paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        game_list = Game.objects.all()
+        paginator = Paginator(game_list, self.paginate_by)
+        page = self.request.GET.get('page')
+        games = paginator.get_page(page)
+        context['games'] = games
+        return context
 
 
 class HeadsetsView(MyView):
