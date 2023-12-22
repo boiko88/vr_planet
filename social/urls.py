@@ -9,7 +9,12 @@ from .views import (
     HeadsetsView, 
     UserRegistrationView, 
     BlogView,
-    BlogSearchView)
+    BlogSearchView,
+    BlogCreate,
+    BlogUpdate,
+    BlogDelete,
+    
+    )
 
 
 urlpatterns = [
@@ -23,4 +28,7 @@ urlpatterns = [
     path('register/', UserRegistrationView.as_view(), name='user_register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='user_logout'),
     path('blog_search/', BlogSearchView.as_view(), name='blog_search'),
+    path('blog_create/', BlogCreate.as_view(), name='blog_create'),
+    path('blog_update/<int:pk>', BlogUpdate.as_view(), name='blog_update'),
+    path('blog_delete/<int:blog_id>', BlogDelete.as_view(), name='blog_delete'),
 ]

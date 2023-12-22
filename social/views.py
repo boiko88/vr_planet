@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework import generics
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse, reverse_lazy
 
 from .serializers import UserSerializer
 from . models import Blog
@@ -33,8 +35,42 @@ class HeadsetsView(MyView):
 class ForumView(MyView):
     template_name = 'forum.html'
 
+# Blog CRUD
 
-class BlogView(TemplateView):
+
+class BlogMixin(object):
+    model = Blog
+    success_url = reverse_lazy('blog')
+    fields = ['blog_name', 'blog_description', 'blog_image']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class BlogCreate(BlogMixin, CreateView):
+    template_name = 'blog_create.html'
+    success_url = reverse_lazy('blog')
+
+
+class BlogUpdate(UpdateView):
+    model = Blog
+    fields = ['blog_name', 'blog_description', 'blog_image']
+    template_name = 'blog_update.html'
+    success_url = reverse_lazy('blog')
+
+
+class BlogDelete(LoginRequiredMixin, DeleteView):
+    model = Blog
+    template_name = 'blog_delete.html'
+    success_url = reverse_lazy('blog')
+
+    def get_object(self, queryset=None):
+        blog_id = self.kwargs.get('blog_id')
+        return Blog.objects.get(id=blog_id)
+
+
+class BlogView(BlogMixin, TemplateView):
     template_name = 'blog.html'
     paginate_by = 6
 
