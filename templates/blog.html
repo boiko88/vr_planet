@@ -9,13 +9,22 @@
   <input type="text" name="query" placeholder="Search..." class="search-input">
   <button type="submit" class="search-button">Search</button>
 </form>
-{% for blog in blogs %}
-    <div>
-      <h3>{{ blog.blog_name }}</h3>
-      <img class=imagecut src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
-      <p>{{ blog.blog_description }}</p>
+{% if blogs %}
+    <center>
+    <div class="blog-container">
+        {% for blog in blogs %}
+            <div class="blog-item">
+                <h3>{{ blog.blog_name }}</h3>
+                <img class="imagecut" src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
+                <p>{{ blog.blog_description }}</p>
+                <hr>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+    </center>
+{% else %}
+    <p>No results found</p>
+{% endif %}
 <!--Paginator-->
 {% if blogs.has_other_pages %}
     <div class="pagination">

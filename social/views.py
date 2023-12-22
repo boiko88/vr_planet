@@ -36,7 +36,7 @@ class ForumView(MyView):
 
 class BlogView(TemplateView):
     template_name = 'blog.html'
-    paginate_by = 2
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
