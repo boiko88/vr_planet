@@ -6,14 +6,16 @@ This platforms is designed for VR lovers. Users of the websites can read and com
 
 The backend of the platform is created by Django. Information about special offers and VR headsets deals has to be scraped and processed on the pages.
 
-The initial version of the website has to have only 5 main pages:
+The initial version of the website has to have only 6 main pages:
 
-Home
+1) Home
 
-Blogs
+2) Blogs
 
-VR Headsets and equipment
+3) Games
 
-Special offers for VR games
+4) VR Headsets
 
-Forum
+5) VR Equipment
+
+5) Forum

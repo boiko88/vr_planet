@@ -26,7 +26,7 @@ class EquipmentView(MyView):
 
 class GamesView(TemplateView):
     template_name = 'games.html'
-    paginate_by = 6
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
