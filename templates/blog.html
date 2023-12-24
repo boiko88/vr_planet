@@ -4,11 +4,11 @@
 <center>
 <h2>This is Blogs page</h2>
 <a href="{% url 'blog_create' %}">Create a New Blog</a>
-</center>
-<form method="GET" action="{% url 'blog_search' %}" class="search-form">
+<form method="GET" action="{% url 'blog_search' %}" class="py-3 mb-3 border-bottom">
   <input type="text" name="query" placeholder="Search..." class="search-input">
   <button type="submit" class="search-button">Search</button>
 </form>
+</center>
 {% if blogs %}
     <center>
     <div class="blog-container">

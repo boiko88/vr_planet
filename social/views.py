@@ -95,6 +95,7 @@ class BlogView(BlogMixin, TemplateView):
 
 
 class UserRegistrationView(generics.CreateAPIView):
+    template_name = 'register.html'
     serializer_class = UserSerializer
 
 
@@ -105,7 +106,7 @@ def login_page(request):
             return redirect('home')
     else:
         form = LoginForm()
-    return render(request, 'login1.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 
 class BlogSearchView(ListView):
