@@ -180,4 +180,14 @@
     white-space: nowrap;
   }
 
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .custon-text {
+    margin-right: 3px;
+    margin-left: 3px;
+  }
+
   

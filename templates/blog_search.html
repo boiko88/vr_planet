@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Search results for "{{ request.GET.query }}"</h2>
-<form method="GET" action="{% url 'blog_search' %}" class="search-form">
+<form method="GET" action="{% url 'blog_search' %}" class="py-3 mb-3 border-bottom">
     <input type="text" name="query" placeholder="Search..." class="search-input">
     <button type="submit" class="search-button">Search</button>
 </form>
@@ -10,10 +10,12 @@
     <center>
     <div class="blog-container">
     {% for blog in blogs %}
-        <div class="blog-item">
-            <h3>{{ blog.blog_name }}</h3>
-            <img class=imagecut src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
-            <p>{{ blog.blog_description }}</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>{{ blog.blog_name }}</h3>
+                <img class=imagecut src="{{ blog.blog_image.url }}" alt="{{ blog.blog_name }}">
+                <p>{{ blog.blog_description }}</p>
+            </div>
         </div>
     
     {% endfor %}
