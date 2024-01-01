@@ -1,22 +1,26 @@
 {% extends "main.html" %}
 
 {% block content %}
+<div class="my-body">
+  <center>
   <h2>Create a New Blog</h2>
   <form method="post" action="{% url 'blog_create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label for="blog_name">Blog Name</label>
-      <input type="text" class="col-form-label" narrow-input name="blog_name" required>
+      <input class="my-form" narrow-input name="blog_name" required>
     </div>
     <div class="form-group">
       <label for="blog_description">Blog Description</label>
-      <textarea class="col-form-label" name="blog_description" required></textarea>
+      <textarea class="my-form textarea" name="blog_description" required></textarea>
     </div>
     <div class="form-group">
       <label for="blog_image">Blog Image</label>
-      <input type="file" name="blog_image" required>
+      <input class="btn btn-primary" type="file" name="blog_image" required>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
     <a href="{% url 'blog' %}" class="btn btn-secondary">Cancel</a>
   </form>
+  </center>
+</div>
 {% endblock content %}

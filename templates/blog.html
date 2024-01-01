@@ -1,6 +1,8 @@
 {% extends "main.html" %}
 
 {% block content %}
+
+<div class="my-body">
 <center>
 <h2>This is Blogs page</h2>
 <a href="{% url 'blog_create' %}">Create a New Blog</a>
@@ -47,6 +49,8 @@
         {% endif %}
     </div>
 {% endif %}
+
+</div>
 
 
 {% endblock content %}

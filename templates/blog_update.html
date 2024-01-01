@@ -1,10 +1,16 @@
 {% extends "main.html" %}
 
 {% block content %}
+<div class="my-body">
+  <center>
   <h2>Update Blog</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p class="my-form">Blog Name - {{ form.blog_name }}</p>
+    <p class="my-form textarea">Blog Description - {{ form.blog_description }}</p>
+    <p class="my-form">Blog Image - {{ form.blog_image }}</p>
     <button class="btn btn-primary" type="submit">Update</button>
   </form>
+  </center>
+</div>
 {% endblock %}

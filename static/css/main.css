@@ -131,7 +131,7 @@
   }
 
   .textblue {
-    color: #2828FF;
+    color: #325caf;
   }
 
 
@@ -146,7 +146,7 @@
   }
   
   .search-button {
-    background-color: #007bff;
+    background-color: #325caf;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -157,7 +157,7 @@
   .footer {
     position: relative;
     background-color: black;
-    color: #007bff;
+    color: #325caf;
     text-align: center;
   }
   
@@ -190,4 +190,23 @@
     margin-left: 3px;
   }
 
+  .my-form {
+    background: #325caf;
+    border-radius: 15px;
+    width: 300px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+  }
+
+  .my-form textarea {
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-bottom: 15px;
+  }
+
+  .my-body {
+    background-color: #353a40;
+    color: white;
+  }
   
