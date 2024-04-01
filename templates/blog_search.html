@@ -7,10 +7,10 @@
     <input type="text" name="query" placeholder="Search..." class="search-input">
     <button type="submit" class="search-button">Search</button>
 </form>
-</center>
+<center>
 {% if blogs %}
     <center>
-    <div class="blog-container">
+    <div class="blog-container blog_item">
     {% for blog in blogs %}
         <div class="row">
             <div class="col-md-6">
@@ -23,12 +23,13 @@
     {% endfor %}
     </div>
     </center>
-    
+</center>
 {% else %}
     <p>No results found</p>
 {% endif %}
 <!--Paginator-->
 {% if blogs.has_other_pages %}
+    <center>
     <div class="pagination">
         <span class="step-links">
             {% if blogs.has_previous %}
@@ -46,6 +47,7 @@
             {% endif %}
         </span>
     </div>
+    </center>
 {% endif %}
 
 

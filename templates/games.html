@@ -2,41 +2,39 @@
 
 {% block content %}
 <div class="my-body">
-<center>
-<h2>This is Games page</h2>
+  <h2 class="text-center">This is Games page</h2>
 
-{% if games %}
-    <center>
-    <div class="blog-container">
-        {% for game in games %}
-            <div class="blog-item">
-                <h3>{{ game.game_name }}</h3>
-                <iframe width="400" height="200" src="https://www.youtube.com/embed/{{ game.video_link|cut:"https://www.youtube.com/watch?v=" }}" frameborder="0" allowfullscreen></iframe>
-                <p>{{ game.game_description }}</p>
-            </div>
-        {% endfor %}
+  {% if games %}
+  <div class="blog-container text-center">
+    {% for game in games %}
+    <div class="blog-item">
+      <h3>{{ game.game_name }}</h3>
+      <iframe width="400" height="200" src="https://www.youtube.com/embed/{{ game.video_link|cut:"https://www.youtube.com/watch?v=" }}" frameborder="0" allowfullscreen></iframe>
+      <p>{{ game.game_description }}</p>
     </div>
-    {% else %}
-    <p>No results found</p>
-{% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-center">No results found</p>
+  {% endif %}
 
-<!--Paginator-->
-{% if games.has_other_pages %}
+  <!--Paginator-->
+  {% if games.has_other_pages %}
+  <div class="d-flex justify-content-center">
     <div class="pagination">
-        {% if games.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ blogs.previous_page_number }}">previous</a>
-            <br>
-        {% endif %}
-        <span class="current-page">
-            Page {{ games.number }} of {{ games.paginator.num_pages }}.
-        </span>
-        {% if games.has_next %}
-            <a href="?page={{ games.next_page_number }}">next</a>
-            <a href="?page={{ games.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
+      {% if games.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ games.previous_page_number }}">previous</a>
+      {% endif %}
+      <span class="current-page">
+        Page {{ games.number }} of {{ games.paginator.num_pages }}.
+      </span>
+      {% if games.has_next %}
+      <a href="?page={{ games.next_page_number }}">next</a>
+      <a href="?page={{ games.paginator.num_pages }}"> last &raquo;</a>
+      {% endif %}
     </div>
-{% endif %}
+  </div>
+  {% endif %}
 </div>
-
 {% endblock content %}
